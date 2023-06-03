@@ -1,3 +1,4 @@
 .logo {
   width: min(40%, 10rem);
+  z-index: 10;
 }
