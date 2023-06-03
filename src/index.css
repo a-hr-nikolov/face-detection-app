@@ -10,8 +10,3 @@ body {
     rgba(188, 228, 255, 1) 100%
   );
 }
-
-.particles {
-  position: fixed;
-  z-index: -1;
-}
