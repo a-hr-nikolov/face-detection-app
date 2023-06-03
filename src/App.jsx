@@ -9,10 +9,8 @@ function App() {
   const [state, setState] = useState(null);
   return (
     <div className="App">
-      <header className="flex justify-end">
-        <Logo />
-        <Nav />
-      </header>
+      <Nav />
+      <Logo />
       <ImageLinkForm />
       {/* 
       <FaceRecognitionContainer /> */}
