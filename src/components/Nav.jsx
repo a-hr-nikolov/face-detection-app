@@ -2,7 +2,7 @@ import React from 'react';
 
 export function Nav() {
   return (
-    <nav className="container mx-auto flex flex-col">
+    <nav className="w-40 ml-auto flex justify-end">
       <p>Sign Out</p>
     </nav>
   );

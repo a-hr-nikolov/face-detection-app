@@ -7,13 +7,14 @@ import { Logo } from './components/Logo/Logo.jsx';
 function App() {
   const [state, setState] = useState(null);
   return (
-    <div className="App">
-      <Nav />
-      <Logo />
+    <div className="App w-full">
+      <header className="flex justify-end">
+        <Logo />
+        <Nav />
+      </header>
       {/* 
       <ImageLinkForm />
       <FaceRecognitionContainer /> */}
-      <h1 className="text-3xl font-bold underline text-center">Hello world!</h1>
     </div>
   );
 }
