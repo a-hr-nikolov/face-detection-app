@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Nav } from './components/Nav.jsx';
-// import { Logo } from './components/Logo.jsx';
+import { Logo } from './components/Logo/Logo.jsx';
 // import { ImageLinkForm } from './components/ImageLinkForm.jsx';
 // import { FaceRecognitionContainer } from './components/FaceRecognitionContainer.jsx';
 
@@ -9,7 +9,8 @@ function App() {
   return (
     <div className="App">
       <Nav />
-      {/* <Logo />
+      <Logo />
+      {/* 
       <ImageLinkForm />
       <FaceRecognitionContainer /> */}
       <h1 className="text-3xl font-bold underline text-center">Hello world!</h1>
