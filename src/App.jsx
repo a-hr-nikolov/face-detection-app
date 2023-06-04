@@ -4,10 +4,11 @@ import { Logo } from './components/Logo/Logo.jsx';
 import './App.css';
 import { ImageLinkForm } from './components/ImageLinkForm/ImageLinkForm.jsx';
 import { Particle } from './components/Particle/Particle.jsx';
-// import { FaceRecognitionContainer } from './components/FaceRecognitionContainer.jsx';
+import { FaceRecognitionContainer } from './components/FaceRecognitionContainer/FaceRecognitionContainer.jsx';
 
 function App() {
   const [urlInput, setUrlInput] = useState('');
+  const [urlOutput, setUrlOutput] = useState('');
 
   const onUrlInputChange = value => {
     setUrlInput(() => value);
@@ -16,7 +17,8 @@ function App() {
   const onSubmit = value => {
     console.log(value);
     // URL of image to use. Change this to your image.
-    const IMAGE_URL = urlInput;
+    document.querySelector('.img-container').classList.remove('hidden');
+    setUrlOutput(urlInput);
 
     const raw = JSON.stringify({
       user_app_id: {
@@ -27,7 +29,7 @@ function App() {
         {
           data: {
             image: {
-              url: IMAGE_URL,
+              url: urlInput,
             },
           },
         },
@@ -60,7 +62,7 @@ function App() {
 
   return (
     <div className="App">
-      <div className="contents">
+      <div>
         <Nav />
         <Logo />
         <ImageLinkForm
@@ -68,8 +70,8 @@ function App() {
           onSubmit={onSubmit}
           urlValue={urlInput}
         />
-        {/*
-        <FaceRecognitionContainer /> */}
+
+        <FaceRecognitionContainer url={urlOutput} />
       </div>
       <Particle className="particles" />
     </div>
