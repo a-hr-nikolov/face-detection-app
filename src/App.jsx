@@ -9,6 +9,28 @@ import { FaceRecognitionContainer } from './components/FaceRecognitionContainer/
 function App() {
   const [urlInput, setUrlInput] = useState('');
   const [urlOutput, setUrlOutput] = useState('');
+  const [faceBoxes, setFaceBoxes] = useState([]);
+
+  const determineFaceBoxLocation = data => {
+    // const firstBox = data[0].region_info.bounding_box;
+    const faceRecImg = document.querySelector('#face-rec-img');
+    const width = parseInt(faceRecImg.width);
+    const height = parseInt(faceRecImg.height);
+    const styleContainer = {
+      width: 10,
+      height: 10,
+      border: '2px solid blue',
+      zIndex: 2,
+      top: '10%',
+      left: '50%',
+    };
+    const containerDiv = (
+      <div className="fixed inline-block" style={styleContainer}>
+        {}
+      </div>
+    );
+    setFaceBoxes(containerDiv);
+  };
 
   const onUrlInputChange = value => {
     setUrlInput(() => value);
@@ -54,12 +76,15 @@ function App() {
       requestOptions
     )
       .then(response => response.json())
-      .then(result =>
-        result.outputs[0].data.regions.forEach(item =>
-          console.log(item.region_info.bounding_box)
-        )
-      )
-      .catch(error => console.log('error', error));
+      .then(result => {
+        let faceBoxData = result.outputs[0].data.regions;
+        faceBoxData.forEach(item => console.log(item.region_info.bounding_box));
+        determineFaceBoxLocation(faceBoxData);
+      })
+      .catch(error => {
+        console.log('error, but will call the other thing');
+        determineFaceBoxLocation();
+      });
 
     // ENDS HERE
   };
@@ -75,7 +100,7 @@ function App() {
           urlValue={urlInput}
         />
 
-        <FaceRecognitionContainer url={urlOutput} />
+        <FaceRecognitionContainer url={urlOutput} faceDetectBoxes={faceBoxes} />
       </div>
       <Particle className="particles" />
     </div>
