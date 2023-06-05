@@ -1,17 +1,16 @@
 import React from 'react';
 import './FaceRecognitionContainer.css';
 
-export function FaceRecognitionContainer({ url, faceDetectBoxes }) {
-  // const faceRecImg = document.querySelector('#face-rec-img');
-  // const width = parseInt(faceRecImg.width);
-  // const height = parseInt(faceRecImg.height);
-  // const style = {
-  //   width: width,
-  //   height: height,
-  // };
+export function FaceRecognitionContainer({ url, faceBoxData }) {
+  const mappedData = faceBoxData.map(item => {
+    const style = { ...item };
+
+    return <div className="bounding-box" style={style}></div>;
+  });
+
   return (
     <div id="face-rec-container" className="fixed img-container my-8 hidden">
-      {faceDetectBoxes}
+      {mappedData}
       <img
         id="face-rec-img"
         src={url}

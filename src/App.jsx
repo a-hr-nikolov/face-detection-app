@@ -9,50 +9,35 @@ import './App.css';
 function App() {
   const [urlInput, setUrlInput] = useState('');
   const [urlOutput, setUrlOutput] = useState('');
-  const [faceBoxes, setFaceBoxes] = useState([]);
+  const [faceBoxData, setFaceBoxData] = useState([]);
 
-  const determineFaceBoxLocation = data => {
+  const processBoxData = data => {
     const boundingBoxes = data.outputs[0].data.regions;
 
     const faceRecImg = document.querySelector('#face-rec-img');
     const width = parseInt(faceRecImg.width);
     const height = parseInt(faceRecImg.height);
-    const styleContainer = {
-      width: width,
-      height: height,
-    };
 
-    const childDivs = [];
+    const boxes = [];
 
     boundingBoxes.forEach(item => {
       const boxLocation = item.region_info.bounding_box;
-
-      const styleChild = {
+      boxes.push({
         top: boxLocation.top_row * height,
         left: boxLocation.left_col * width,
         bottom: height - boxLocation.bottom_row * height,
         right: width - boxLocation.right_col * width,
-      };
-
-      const newDiv = <div className="bounding-box" style={styleChild}></div>;
-      childDivs.push(newDiv);
+      });
     });
 
-    const containerDiv = (
-      <div className="absolute inline-block" style={styleContainer}>
-        {childDivs}
-      </div>
-    );
-    setFaceBoxes(containerDiv);
+    return boxes;
   };
-
-  const calculateBoxDimensions = boxLocationData => {};
 
   const onUrlInputChange = value => {
     setUrlInput(() => value);
   };
 
-  const onSubmit = value => {
+  const onSubmit = () => {
     document.querySelector('.img-container').classList.remove('hidden');
     setUrlOutput(urlInput);
 
@@ -92,15 +77,15 @@ function App() {
     )
       .then(response => response.json())
       .then(result => {
-        determineFaceBoxLocation(result);
+        setFaceBoxData(processBoxData(result));
         console.log(result);
         // let faceBoxData = result.outputs[0].data.regions;
-        // determineFaceBoxLocation(faceBoxData);
+        // processBoxData(faceBoxData);
         // faceBoxData.forEach(item => console.log(item.region_info.bounding_box));
-        //determineFaceBoxLocation(faceBoxData);
+        //processBoxData(faceBoxData);
       })
       .catch(error => {
-        console.log('error, but will call the other thing');
+        console.log('error, but will call the other thing', error);
       });
 
     // ENDS HERE
@@ -116,8 +101,7 @@ function App() {
           onSubmit={onSubmit}
           urlValue={urlInput}
         />
-
-        <FaceRecognitionContainer url={urlOutput} faceDetectBoxes={faceBoxes} />
+        <FaceRecognitionContainer url={urlOutput} faceBoxData={faceBoxData} />
       </div>
       <Particle className="particles" />
     </div>
