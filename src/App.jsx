@@ -17,16 +17,29 @@ function App() {
     const width = parseInt(faceRecImg.width);
     const height = parseInt(faceRecImg.height);
     const styleContainer = {
-      width: 10,
-      height: 10,
-      border: '2px solid blue',
-      zIndex: 2,
-      top: '10%',
-      left: '50%',
+      width: width,
+      height: height,
     };
+
+    const childDivs = [];
+
+    for (let i = 0; i < 10; i++) {
+      const styleChild = {
+        border: '2px solid blue',
+        zIndex: 2,
+        top: `${10 + i * 5}%`,
+        left: `${10 + i * 5}%`,
+        width: 50,
+        height: 50,
+      };
+
+      const newDiv = <div className="absolute" style={styleChild}></div>;
+      childDivs.push(newDiv);
+    }
+
     const containerDiv = (
-      <div className="fixed inline-block" style={styleContainer}>
-        {}
+      <div className="absolute inline-block" style={styleContainer}>
+        {childDivs}
       </div>
     );
     setFaceBoxes(containerDiv);
@@ -37,8 +50,6 @@ function App() {
   };
 
   const onSubmit = value => {
-    console.log(value);
-    // URL of image to use. Change this to your image.
     document.querySelector('.img-container').classList.remove('hidden');
     setUrlOutput(urlInput);
 
@@ -70,16 +81,17 @@ function App() {
     // NOTE: MODEL_VERSION_ID is optional, you can also call prediction with the MODEL_ID only
     // https://api.clarifai.com/v2/models/{YOUR_MODEL_ID}/outputs
     // this will default to the latest version_id
+    // `https://api.clarifai.com/v2/models/face-detection/versions/6dc7e46bc9124c5c8824be4822abe105/outputs`,
 
     fetch(
-      `https://api.clarifai.com/v2/models/face-detection/versions/6dc7e46bc9124c5c8824be4822abe105/outputs`,
+      `https://api.clarifai.com/v2/models/face-detection/outputs`,
       requestOptions
     )
       .then(response => response.json())
       .then(result => {
         let faceBoxData = result.outputs[0].data.regions;
         faceBoxData.forEach(item => console.log(item.region_info.bounding_box));
-        determineFaceBoxLocation(faceBoxData);
+        //determineFaceBoxLocation(faceBoxData);
       })
       .catch(error => {
         console.log('error, but will call the other thing');
