@@ -1,4 +1,5 @@
 import React from 'react';
+import './FaceRecognitionContainer.css';
 
 export function FaceRecognitionContainer({ url, faceDetectBoxes }) {
   // const faceRecImg = document.querySelector('#face-rec-img');
@@ -10,13 +11,13 @@ export function FaceRecognitionContainer({ url, faceDetectBoxes }) {
   // };
   return (
     <div id="face-rec-container" className="fixed img-container my-8 hidden">
+      {faceDetectBoxes}
       <img
         id="face-rec-img"
         src={url}
         alt="Image from URL"
-        className="fixed sm:rounded-3xl rounded-xl"
+        className="sm:rounded-3xl rounded-xl w-full"
       ></img>
-      {faceDetectBoxes}
     </div>
   );
 }

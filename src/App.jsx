@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { Nav } from './components/Nav.jsx';
 import { Logo } from './components/Logo/Logo.jsx';
-import './App.css';
 import { ImageLinkForm } from './components/ImageLinkForm/ImageLinkForm.jsx';
 import { Particle } from './components/Particle/Particle.jsx';
 import { FaceRecognitionContainer } from './components/FaceRecognitionContainer/FaceRecognitionContainer.jsx';
+import './App.css';
 
 function App() {
   const [urlInput, setUrlInput] = useState('');
@@ -12,7 +12,8 @@ function App() {
   const [faceBoxes, setFaceBoxes] = useState([]);
 
   const determineFaceBoxLocation = data => {
-    // const firstBox = data[0].region_info.bounding_box;
+    const boundingBoxes = data.outputs[0].data.regions;
+
     const faceRecImg = document.querySelector('#face-rec-img');
     const width = parseInt(faceRecImg.width);
     const height = parseInt(faceRecImg.height);
@@ -23,19 +24,19 @@ function App() {
 
     const childDivs = [];
 
-    for (let i = 0; i < 10; i++) {
+    boundingBoxes.forEach(item => {
+      const boxLocation = item.region_info.bounding_box;
+
       const styleChild = {
-        border: '2px solid blue',
-        zIndex: 2,
-        top: `${10 + i * 5}%`,
-        left: `${10 + i * 5}%`,
-        width: 50,
-        height: 50,
+        top: boxLocation.top_row * height,
+        left: boxLocation.left_col * width,
+        bottom: height - boxLocation.bottom_row * height,
+        right: width - boxLocation.right_col * width,
       };
 
-      const newDiv = <div className="absolute" style={styleChild}></div>;
+      const newDiv = <div className="bounding-box" style={styleChild}></div>;
       childDivs.push(newDiv);
-    }
+    });
 
     const containerDiv = (
       <div className="absolute inline-block" style={styleContainer}>
@@ -44,6 +45,8 @@ function App() {
     );
     setFaceBoxes(containerDiv);
   };
+
+  const calculateBoxDimensions = boxLocationData => {};
 
   const onUrlInputChange = value => {
     setUrlInput(() => value);
@@ -89,13 +92,15 @@ function App() {
     )
       .then(response => response.json())
       .then(result => {
-        let faceBoxData = result.outputs[0].data.regions;
-        faceBoxData.forEach(item => console.log(item.region_info.bounding_box));
+        determineFaceBoxLocation(result);
+        console.log(result);
+        // let faceBoxData = result.outputs[0].data.regions;
+        // determineFaceBoxLocation(faceBoxData);
+        // faceBoxData.forEach(item => console.log(item.region_info.bounding_box));
         //determineFaceBoxLocation(faceBoxData);
       })
       .catch(error => {
         console.log('error, but will call the other thing');
-        determineFaceBoxLocation();
       });
 
     // ENDS HERE
@@ -103,7 +108,7 @@ function App() {
 
   return (
     <div className="App">
-      <div>
+      <div className="w-full">
         <Nav />
         <Logo />
         <ImageLinkForm

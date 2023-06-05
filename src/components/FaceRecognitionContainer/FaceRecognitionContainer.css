@@ -1,0 +1,17 @@
+#face-rec-container {
+  width: min(90%, 1140px);
+}
+
+.bounding-box {
+  position: absolute;
+  box-shadow: 0 0 0 3px #149df2 inset;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.bounding-box:hover {
+  background-color: #149df246;
+}
