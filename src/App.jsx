@@ -38,7 +38,7 @@ function App() {
   };
 
   const onSubmit = () => {
-    document.querySelector('.img-container').classList.remove('hidden');
+    document.querySelector('#face-rec-container').classList.remove('hidden');
     setUrlOutput(urlInput);
 
     const raw = JSON.stringify({

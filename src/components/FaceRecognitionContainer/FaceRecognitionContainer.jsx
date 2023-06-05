@@ -9,14 +9,16 @@ export function FaceRecognitionContainer({ url, faceBoxData }) {
   });
 
   return (
-    <div id="face-rec-container" className="fixed img-container my-8 hidden">
-      {mappedData}
-      <img
-        id="face-rec-img"
-        src={url}
-        alt="Image from URL"
-        className="sm:rounded-3xl rounded-xl w-full"
-      ></img>
+    <div id="face-rec-container" className="relative my-8 hidden w-full">
+      <div>
+        {mappedData}
+        <img
+          id="face-rec-img"
+          src={url}
+          alt="Image from URL"
+          className="sm:rounded-3xl rounded-xl"
+        ></img>
+      </div>
     </div>
   );
 }
