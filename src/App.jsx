@@ -54,7 +54,11 @@ function App() {
       requestOptions
     )
       .then(response => response.json())
-      .then(result => console.log(result))
+      .then(result =>
+        result.outputs[0].data.regions.forEach(item =>
+          console.log(item.region_info.bounding_box)
+        )
+      )
       .catch(error => console.log('error', error));
 
     // ENDS HERE
