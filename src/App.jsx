@@ -6,11 +6,13 @@ import { Particle } from './components/Particle/Particle.jsx';
 import { FaceRecognitionContainer } from './components/FaceRecognitionContainer/FaceRecognitionContainer.jsx';
 import './App.css';
 import { SignInForm } from './components/SignInForm/SignInForm.jsx';
+import { Title } from './components/Title/Title.jsx';
 
 function App() {
   const [urlInput, setUrlInput] = useState('');
   const [urlOutput, setUrlOutput] = useState('');
   const [faceBoxData, setFaceBoxData] = useState([]);
+  const [route, setRoute] = useState('signin');
 
   const processBoxData = data => {
     const boundingBoxes = data.outputs[0].data.regions;
@@ -97,13 +99,22 @@ function App() {
       <div className="w-full">
         <Nav />
         <Logo />
-        <SignInForm />
-        <ImageLinkForm
-          onChange={onUrlInputChange}
-          onSubmit={onSubmit}
-          urlValue={urlInput}
-        />
-        <FaceRecognitionContainer url={urlOutput} faceBoxData={faceBoxData} />
+        <Title />
+        {route === 'signin' ? (
+          <SignInForm onClick={setRoute} />
+        ) : (
+          <>
+            <ImageLinkForm
+              onChange={onUrlInputChange}
+              onSubmit={onSubmit}
+              urlValue={urlInput}
+            />
+            <FaceRecognitionContainer
+              url={urlOutput}
+              faceBoxData={faceBoxData}
+            />
+          </>
+        )}
       </div>
       <Particle className="particles" />
     </div>
