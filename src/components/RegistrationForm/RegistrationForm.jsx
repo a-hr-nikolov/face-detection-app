@@ -1,7 +1,11 @@
 import React from 'react';
 import './RegistrationForm.css';
 
-export function RegistrationForm() {
+export function RegistrationForm({ setRoute }) {
+  function handleClick() {
+    setRoute('home');
+  }
+
   return (
     <div className="w-full max-w-xs mt-8 mx-auto">
       <form id="reg-form" className="shadow-md rounded px-8 pt-6 pb-8">
@@ -36,12 +40,13 @@ export function RegistrationForm() {
             Please choose a password.
           </p>
         </div>
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-center pb-2">
           <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="button"
+            onClick={handleClick}
           >
-            Sign Up
+            Register
           </button>
         </div>
       </form>

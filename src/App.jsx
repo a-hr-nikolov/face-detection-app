@@ -7,6 +7,7 @@ import { FaceRecognitionContainer } from './components/FaceRecognitionContainer/
 import './App.css';
 import { SignInForm } from './components/SignInForm/SignInForm.jsx';
 import { Title } from './components/Title/Title.jsx';
+import { RegistrationForm } from './components/RegistrationForm/RegistrationForm.jsx';
 
 function App() {
   const [urlInput, setUrlInput] = useState('');
@@ -100,9 +101,7 @@ function App() {
         <Nav />
         <Logo />
         <Title />
-        {route === 'signin' ? (
-          <SignInForm setRoute={setRoute} />
-        ) : (
+        {route === 'home' ? (
           <>
             <ImageLinkForm
               onChange={onUrlInputChange}
@@ -114,6 +113,10 @@ function App() {
               faceBoxData={faceBoxData}
             />
           </>
+        ) : route === 'signin' ? (
+          <SignInForm setRoute={setRoute} />
+        ) : (
+          <RegistrationForm setRoute={setRoute} />
         )}
       </div>
       <Particle className="particles" />
