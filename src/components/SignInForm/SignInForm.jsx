@@ -1,7 +1,12 @@
 import React from 'react';
 import './SignInForm.css';
 
-export function SignInForm({ setRoute }) {
+export function SignInForm({ setRoute, signIn }) {
+  function handleSignIn() {
+    signIn();
+    setRoute('home');
+  }
+
   return (
     <div className="w-full max-w-xs mt-8 mx-auto">
       <form id="sign-in" className="shadow-md rounded px-8 pt-6 pb-8">
@@ -40,7 +45,7 @@ export function SignInForm({ setRoute }) {
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="button"
-            onClick={() => setRoute('home')}
+            onClick={handleSignIn}
           >
             Sign In
           </button>

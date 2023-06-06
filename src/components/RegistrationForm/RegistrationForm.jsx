@@ -3,7 +3,7 @@ import './RegistrationForm.css';
 
 export function RegistrationForm({ setRoute }) {
   function handleClick() {
-    setRoute('home');
+    setRoute('signin');
   }
 
   return (

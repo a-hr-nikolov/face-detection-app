@@ -14,6 +14,7 @@ function App() {
   const [urlOutput, setUrlOutput] = useState('');
   const [faceBoxData, setFaceBoxData] = useState([]);
   const [route, setRoute] = useState('signin');
+  const [isSignedIn, setIsSignedIn] = useState(false);
 
   function processBoxData(data) {
     const boundingBoxes = data.outputs[0].data.regions;
@@ -95,10 +96,18 @@ function App() {
     // ENDS HERE
   }
 
+  function signOut() {
+    setIsSignedIn(false);
+  }
+
+  function signIn() {
+    setIsSignedIn(true);
+  }
+
   return (
     <div className="App">
       <div className="w-full">
-        <Nav />
+        <Nav isSignedIn={isSignedIn} signOut={signOut} setRoute={setRoute} />
         <Logo />
         <Title />
         {route === 'home' ? (
@@ -114,7 +123,7 @@ function App() {
             />
           </>
         ) : route === 'signin' ? (
-          <SignInForm setRoute={setRoute} />
+          <SignInForm setRoute={setRoute} signIn={signIn} />
         ) : (
           <RegistrationForm setRoute={setRoute} />
         )}
