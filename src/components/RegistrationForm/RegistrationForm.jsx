@@ -1,10 +1,10 @@
 import React from 'react';
-import './SignInForm.css';
+import './RegistrationForm.css';
 
-export function SignInForm({ setRoute }) {
+export function RegistrationForm() {
   return (
     <div className="w-full max-w-xs mt-8 mx-auto">
-      <form id="sign-in" className="shadow-md rounded px-8 pt-6 pb-8">
+      <form id="reg-form" className="shadow-md rounded px-8 pt-6 pb-8">
         <div className="mb-4">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
@@ -24,7 +24,7 @@ export function SignInForm({ setRoute }) {
             className="block text-gray-700 text-sm font-bold mb-2"
             htmlFor="password"
           >
-            Password
+            Choose a Password
           </label>
           <input
             className="shadow appearance-none border invalid:border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
@@ -40,25 +40,9 @@ export function SignInForm({ setRoute }) {
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="button"
-            onClick={() => setRoute('home')}
           >
-            Sign In
+            Sign Up
           </button>
-          <a
-            className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-            onClick={() => setRoute('register')}
-          >
-            Not Registered?
-          </a>
-        </div>
-        <div className="flex justify-center items-center mt-8">
-          <a
-            className="inline-block font-bold text-md text-red-500 hover:text-red-800"
-            href="#"
-            onClick={() => setRoute('home')}
-          >
-            Use as guest
-          </a>
         </div>
       </form>
     </div>

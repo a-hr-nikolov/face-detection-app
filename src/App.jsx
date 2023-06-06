@@ -14,7 +14,7 @@ function App() {
   const [faceBoxData, setFaceBoxData] = useState([]);
   const [route, setRoute] = useState('signin');
 
-  const processBoxData = data => {
+  function processBoxData(data) {
     const boundingBoxes = data.outputs[0].data.regions;
 
     const faceRecImg = document.querySelector('#face-rec-img');
@@ -34,13 +34,13 @@ function App() {
     });
 
     return boxes;
-  };
+  }
 
-  const onUrlInputChange = value => {
+  function onUrlInputChange(value) {
     setUrlInput(() => value);
-  };
+  }
 
-  const onSubmit = () => {
+  function onSubmit() {
     document.querySelector('#face-rec-container').classList.remove('hidden');
     setUrlOutput(urlInput);
 
@@ -92,7 +92,7 @@ function App() {
       });
 
     // ENDS HERE
-  };
+  }
 
   return (
     <div className="App">
@@ -101,7 +101,7 @@ function App() {
         <Logo />
         <Title />
         {route === 'signin' ? (
-          <SignInForm onClick={setRoute} />
+          <SignInForm setRoute={setRoute} />
         ) : (
           <>
             <ImageLinkForm
