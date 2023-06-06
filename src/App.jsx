@@ -5,6 +5,7 @@ import { ImageLinkForm } from './components/ImageLinkForm/ImageLinkForm.jsx';
 import { Particle } from './components/Particle/Particle.jsx';
 import { FaceRecognitionContainer } from './components/FaceRecognitionContainer/FaceRecognitionContainer.jsx';
 import './App.css';
+import { SignInForm } from './components/SignInForm/SignInForm.jsx';
 
 function App() {
   const [urlInput, setUrlInput] = useState('');
@@ -96,6 +97,7 @@ function App() {
       <div className="w-full">
         <Nav />
         <Logo />
+        <SignInForm />
         <ImageLinkForm
           onChange={onUrlInputChange}
           onSubmit={onSubmit}

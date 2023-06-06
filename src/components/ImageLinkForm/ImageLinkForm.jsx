@@ -15,8 +15,8 @@ export function ImageLinkForm({ onChange, onSubmit, urlValue }) {
     <div className="form-container flex flex-col gap-4 items-center justify-center pt-4">
       <h1 className="text-4xl">Detect-A-Facer</h1>
       <p className="text-base">
-        Witness the ability of a computer to draw a rectangle around a face. And
-        to think humans are born with this amazing capability? Astounding!
+        Witness the ability of a computer to draw a rectangle around a face.
+        Astounding!
       </p>
       <div className="input-form flex flex-col sm:flex-row justify-center gap-4 self-stretch sm:rounded-full rounded-3xl">
         <form onSubmit={handleSubmit} className="contents">
