@@ -9,7 +9,7 @@ export function Nav({ isSignedIn, signOut, setRoute }) {
   {
     if (isSignedIn)
       return (
-        <nav className="flex justify-end py-4">
+        <nav className="flex gap-8 justify-end py-4">
           <a href="#" onClick={handleSignOut}>
             Sign Out
           </a>
@@ -17,9 +17,12 @@ export function Nav({ isSignedIn, signOut, setRoute }) {
       );
     else
       return (
-        <nav className="flex justify-end py-4">
+        <nav className="flex gap-8 justify-end py-4">
           <a href="#" onClick={() => setRoute('signin')}>
             Sign In
+          </a>
+          <a href="#" onClick={() => setRoute('register')}>
+            Register
           </a>
         </nav>
       );
