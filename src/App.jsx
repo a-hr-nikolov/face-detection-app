@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Nav } from './components/Nav.jsx';
 import { Logo } from './components/Logo/Logo.jsx';
 import { ImageLinkForm } from './components/ImageLinkForm/ImageLinkForm.jsx';
@@ -15,6 +15,17 @@ function App() {
   const [faceBoxData, setFaceBoxData] = useState([]);
   const [route, setRoute] = useState('signin');
   const [isSignedIn, setIsSignedIn] = useState(false);
+
+  useEffect(() => {
+    (async function () {
+      try {
+        const response = await fetch('http://localhost:3000');
+        console.log(await response.json());
+      } catch (err) {
+        console.log(err);
+      }
+    })();
+  }, []);
 
   function processBoxData(data) {
     const boundingBoxes = data.outputs[0].data.regions;
@@ -104,6 +115,13 @@ function App() {
     setIsSignedIn(true);
   }
 
+  function register() {
+    const options = {
+      method: 'POST',
+    };
+    setRoute('signin');
+  }
+
   return (
     <div className="App">
       <div className="w-full">
@@ -125,7 +143,7 @@ function App() {
         ) : route === 'signin' ? (
           <SignInForm setRoute={setRoute} signIn={signIn} />
         ) : (
-          <RegistrationForm setRoute={setRoute} />
+          <RegistrationForm register={register} />
         )}
       </div>
       <Particle className="particles" />
