@@ -15,11 +15,12 @@ function App() {
   const [faceBoxData, setFaceBoxData] = useState([]);
   const [route, setRoute] = useState('signin');
   const [isSignedIn, setIsSignedIn] = useState(false);
+  const SERVER_URL = 'http://localhost:3000';
 
   useEffect(() => {
     (async function () {
       try {
-        const response = await fetch('http://localhost:3000');
+        const response = await fetch(SERVER_URL);
         console.log(await response.json());
       } catch (err) {
         console.log(err);
@@ -115,11 +116,29 @@ function App() {
     setIsSignedIn(true);
   }
 
-  function register() {
+  async function register(name, password) {
+    const userInfo = { name, password };
     const options = {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userInfo),
     };
-    setRoute('signin');
+    try {
+      const response = await fetch(SERVER_URL + '/register', options);
+      if (!response.ok) {
+        if (response.status === 409) {
+          return document
+            .querySelector('#username-error')
+            .classList.remove('hidden');
+        }
+      }
+      setRoute('signin');
+    } catch (err) {
+      console.log('Error in fetching, check the url\n', err);
+      // Handle the error for the user as well
+    }
   }
 
   return (
@@ -143,7 +162,7 @@ function App() {
         ) : route === 'signin' ? (
           <SignInForm setRoute={setRoute} signIn={signIn} />
         ) : (
-          <RegistrationForm register={register} />
+          <RegistrationForm register={register} username={username} />
         )}
       </div>
       <Particle className="particles" />
