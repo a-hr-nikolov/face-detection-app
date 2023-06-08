@@ -112,8 +112,32 @@ function App() {
     setIsSignedIn(false);
   }
 
-  function signIn() {
-    setIsSignedIn(true);
+  async function signIn(name, password) {
+    const userInfo = { name, password };
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userInfo),
+    };
+    try {
+      const response = await fetch(SERVER_URL + '/signin', options);
+      if (!response.ok) {
+        if (response.status === 400) {
+          return document
+            .querySelector('#credentials-error')
+            .classList.remove('hidden');
+        } else
+          return document
+            .querySelector('.server-error-login')
+            .classList.remove('hidden');
+      }
+      setIsSignedIn(true);
+      setRoute('home');
+    } catch (err) {
+      console.log('Error in fetching, check the url\n', err);
+    }
   }
 
   async function register(name, password) {
@@ -132,12 +156,14 @@ function App() {
           return document
             .querySelector('#username-error')
             .classList.remove('hidden');
-        }
+        } else
+          return document
+            .querySelector('.server-error-reg')
+            .classList.remove('hidden');
       }
       setRoute('signin');
     } catch (err) {
       console.log('Error in fetching, check the url\n', err);
-      // Handle the error for the user as well
     }
   }
 

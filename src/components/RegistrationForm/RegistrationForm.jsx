@@ -7,7 +7,16 @@ export function RegistrationForm({ register }) {
 
   function handleRegistration(event) {
     event.preventDefault();
+
+    const usernameInput = document.querySelector('#username-reg');
+    const passwordInput = document.querySelector('#password-reg');
+    if (!username)
+      return usernameInput.setCustomValidity('Username field cannot be empty');
+    if (!password)
+      return passwordInput.setCustomValidity('Password field cannot be empty');
+
     document.querySelector('#username-error').classList.add('hidden');
+    document.querySelector('.server-error-reg').classList.add('hidden');
     register(username, password);
     setUsername('');
     setPassword('');
@@ -35,33 +44,38 @@ export function RegistrationForm({ register }) {
           >
             Username already taken.
           </p>
+          <p className="server-error-reg text-red-500 text-md italic hidden pb-2">
+            An error occurred, please try again.
+          </p>
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="username"
+            htmlFor="username-reg"
           >
             Username
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="username"
+            id="username-reg"
             type="text"
             placeholder="Username"
             onChange={handleUsernameChange}
+            value={username}
           />
         </div>
         <div className="mb-6">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="password"
-            onChange={handlePasswordChange}
+            htmlFor="password-reg"
           >
             Choose a Password
           </label>
           <input
             className="shadow appearance-none border invalid:border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-            id="password"
+            id="password-reg"
             type="password"
             placeholder="************"
+            onChange={handlePasswordChange}
+            value={password}
           />
           <p className="text-red-500 text-xs italic hidden">
             Please choose a password.

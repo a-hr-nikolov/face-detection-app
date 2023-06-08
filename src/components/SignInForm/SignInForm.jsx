@@ -1,11 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './SignInForm.css';
 
 export function SignInForm({ setRoute, signIn }) {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  function handleUsernameChange(event) {
+    setUsername(() => event.target.value);
+  }
+
+  function handlePasswordChange(event) {
+    setPassword(() => event.target.value);
+  }
+
   function handleSignIn(event) {
     event.preventDefault();
-    signIn();
-    setRoute('home');
+
+    const usernameInput = document.querySelector('#username');
+    const passwordInput = document.querySelector('#password');
+    if (!username)
+      return usernameInput.setCustomValidity('Username field cannot be empty');
+    if (!password)
+      return passwordInput.setCustomValidity('Password field cannot be empty');
+
+    document.querySelector('#credentials-error').classList.add('hidden');
+    document.querySelector('.server-error-login').classList.add('hidden');
+    signIn(username, password);
+    setUsername('');
+    setPassword('');
   }
 
   return (
@@ -16,6 +38,15 @@ export function SignInForm({ setRoute, signIn }) {
         onSubmit={handleSignIn}
       >
         <div className="mb-4">
+          <p
+            id="credentials-error"
+            className="text-red-500 text-md italic hidden pb-2"
+          >
+            Wrong username and/or password.
+          </p>
+          <p className="server-error-login text-red-500 text-md italic hidden pb-2">
+            An error occurred, please try again.
+          </p>
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
             htmlFor="username"
@@ -27,6 +58,8 @@ export function SignInForm({ setRoute, signIn }) {
             id="username"
             type="text"
             placeholder="Username"
+            onChange={handleUsernameChange}
+            value={username}
           />
         </div>
         <div className="mb-6">
@@ -41,6 +74,8 @@ export function SignInForm({ setRoute, signIn }) {
             id="password"
             type="password"
             placeholder="************"
+            onChange={handlePasswordChange}
+            value={password}
           />
           <p className="text-red-500 text-xs italic hidden">
             Please choose a password.
