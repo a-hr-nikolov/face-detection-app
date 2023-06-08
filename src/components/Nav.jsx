@@ -1,8 +1,7 @@
 import React from 'react';
 
-export function Nav({ isSignedIn, signOut, setRoute }) {
+export function Nav({ isSignedIn, signOut, setRoute, loadProfile }) {
   function handleSignOut() {
-    setRoute('signin');
     signOut();
   }
 
@@ -10,6 +9,9 @@ export function Nav({ isSignedIn, signOut, setRoute }) {
     if (isSignedIn)
       return (
         <nav className="flex gap-8 justify-end py-4">
+          <a href="#" onClick={loadProfile}>
+            Profile
+          </a>
           <a href="#" onClick={handleSignOut}>
             Sign Out
           </a>

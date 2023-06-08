@@ -8,6 +8,7 @@ import './App.css';
 import { SignInForm } from './components/SignInForm/SignInForm.jsx';
 import { Title } from './components/Title/Title.jsx';
 import { RegistrationForm } from './components/RegistrationForm/RegistrationForm.jsx';
+import { Profile } from './components/Profile/Profile.jsx';
 
 function App() {
   const [urlInput, setUrlInput] = useState('');
@@ -15,21 +16,13 @@ function App() {
   const [faceBoxData, setFaceBoxData] = useState([]);
   const [route, setRoute] = useState('signin');
   const [isSignedIn, setIsSignedIn] = useState(false);
+  const [user, setUser] = useState(null);
   const SERVER_URL = 'http://localhost:3000';
-
-  useEffect(() => {
-    (async function () {
-      try {
-        const response = await fetch(SERVER_URL);
-        console.log(await response.json());
-      } catch (err) {
-        console.log(err);
-      }
-    })();
-  }, []);
 
   function processBoxData(data) {
     const boundingBoxes = data.outputs[0].data.regions;
+
+    if (isSignedIn) increaseUserDetected(boundingBoxes.length);
 
     const faceRecImg = document.querySelector('#face-rec-img');
     const width = parseInt(faceRecImg.width);
@@ -48,6 +41,31 @@ function App() {
     });
 
     return boxes;
+  }
+
+  async function increaseUserDetected(detections) {
+    if (!isSignedIn) return;
+
+    const facesDetected = user.facesDetected + detections;
+
+    const userInfo = { name: user.name, facesDetected };
+
+    const options = {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userInfo),
+    };
+
+    try {
+      const response = await fetch(SERVER_URL + '/detected', options);
+      if (!response.ok) return console.log('Error, faces not counted');
+      const updatedUser = await response.json();
+      setUser(updatedUser);
+    } catch (err) {
+      console.log('Error, faces not counted');
+    }
   }
 
   function onUrlInputChange(value) {
@@ -109,7 +127,9 @@ function App() {
   }
 
   function signOut() {
+    setUser(null);
     setIsSignedIn(false);
+    setRoute('signin');
   }
 
   async function signIn(name, password) {
@@ -133,6 +153,8 @@ function App() {
             .querySelector('.server-error-login')
             .classList.remove('hidden');
       }
+      const data = await response.json();
+      setUser(data.object);
       setIsSignedIn(true);
       setRoute('home');
     } catch (err) {
@@ -167,13 +189,22 @@ function App() {
     }
   }
 
+  async function loadProfile() {
+    setRoute('profile');
+  }
+
   return (
     <div className="App">
       <div className="w-full">
-        <Nav isSignedIn={isSignedIn} signOut={signOut} setRoute={setRoute} />
+        <Nav
+          isSignedIn={isSignedIn}
+          signOut={signOut}
+          setRoute={setRoute}
+          loadProfile={loadProfile}
+        />
         <Logo />
         <Title />
-        {route === 'home' ? (
+        {route === 'home' && (
           <>
             <ImageLinkForm
               onChange={onUrlInputChange}
@@ -185,10 +216,15 @@ function App() {
               faceBoxData={faceBoxData}
             />
           </>
-        ) : route === 'signin' ? (
+        )}
+        {route === 'signin' && (
           <SignInForm setRoute={setRoute} signIn={signIn} />
-        ) : (
+        )}
+        {route === 'register' && (
           <RegistrationForm register={register} username={username} />
+        )}
+        {route === 'profile' && (
+          <Profile detected={user.facesDetected} setRoute={setRoute} />
         )}
       </div>
       <Particle className="particles" />
