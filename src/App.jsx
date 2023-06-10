@@ -176,11 +176,11 @@ function App() {
       if (!response.ok) {
         if (response.status === 409) {
           return document
-            .querySelector('#username-error')
+            .querySelector('.js-username-error')
             .classList.remove('hidden');
         } else
           return document
-            .querySelector('.server-error-reg')
+            .querySelector('.js-server-error')
             .classList.remove('hidden');
       }
       setRoute('signin');

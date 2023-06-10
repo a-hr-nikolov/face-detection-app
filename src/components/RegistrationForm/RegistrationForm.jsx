@@ -8,15 +8,15 @@ export function RegistrationForm({ register }) {
   function handleRegistration(event) {
     event.preventDefault();
 
-    const usernameInput = document.querySelector('#username-reg');
-    const passwordInput = document.querySelector('#password-reg');
-    if (!username)
-      return usernameInput.setCustomValidity('Username field cannot be empty');
-    if (!password)
-      return passwordInput.setCustomValidity('Password field cannot be empty');
+    const emptyFieldError = document.querySelector('.js-empty-fields');
 
-    document.querySelector('#username-error').classList.add('hidden');
-    document.querySelector('.server-error-reg').classList.add('hidden');
+    if (!username) return emptyFieldError.classList.remove('hidden');
+    if (!password) return emptyFieldError.classList.remove('hidden');
+
+    document.querySelector('.js-username-error').classList.add('hidden');
+    document.querySelector('.js-server-error').classList.add('hidden');
+    emptyFieldError.classList.add('hidden');
+
     register(username, password);
     setUsername('');
     setPassword('');
@@ -38,24 +38,23 @@ export function RegistrationForm({ register }) {
         onSubmit={handleRegistration}
       >
         <div className="mb-4">
-          <p
-            id="username-error"
-            className="text-red-500 text-md italic hidden pb-2"
-          >
-            Username already taken.
+          <p className="js-username-error text-red-500 text-md italic hidden pb-2">
+            Bad username request, try again.
           </p>
-          <p className="server-error-reg text-red-500 text-md italic hidden pb-2">
+          <p className="js-server-error text-red-500 text-md italic hidden pb-2">
             An error occurred, please try again.
           </p>
+
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="username-reg"
+            htmlFor="username"
           >
             Username
           </label>
+
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="username-reg"
+            id="username"
             type="text"
             placeholder="Username"
             onChange={handleUsernameChange}
@@ -65,25 +64,25 @@ export function RegistrationForm({ register }) {
         <div className="mb-6">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="password-reg"
+            htmlFor="password"
           >
-            Choose a Password
+            Password
           </label>
           <input
             className="shadow appearance-none border invalid:border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-            id="password-reg"
+            id="password"
             type="password"
             placeholder="************"
             onChange={handlePasswordChange}
             value={password}
           />
-          <p className="text-red-500 text-xs italic hidden">
-            Please choose a password.
+          <p className="js-empty-fields text-red-500 text-md italic hidden pb-2">
+            All fields are required
           </p>
         </div>
         <div className="flex items-center justify-center pb-2">
           <button
-            className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="w-full bg-blue-500 hover:bg-blue-700 active:scale-105 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="submit"
           >
             Register
