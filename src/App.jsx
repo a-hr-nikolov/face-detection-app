@@ -46,9 +46,9 @@ function App() {
   async function increaseUserDetected(detections) {
     if (!isSignedIn) return;
 
-    const facesDetected = user.facesDetected + detections;
+    const detected = user.detected + detections;
 
-    const userInfo = { username: user.username, facesDetected };
+    const userInfo = { username: user.username, detected };
 
     const options = {
       method: 'PUT',
@@ -190,7 +190,14 @@ function App() {
   }
 
   async function loadProfile() {
-    setRoute('profile');
+    try {
+      const response = await fetch(SERVER_URL + `/profile/${user.username}`);
+      const newUser = await response.json();
+      setUser(newUser);
+      setRoute('profile');
+    } catch {
+      signOut();
+    }
   }
 
   return (

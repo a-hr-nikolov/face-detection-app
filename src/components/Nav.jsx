@@ -1,10 +1,6 @@
 import React from 'react';
 
 export function Nav({ isSignedIn, signOut, setRoute, loadProfile }) {
-  function handleSignOut() {
-    signOut();
-  }
-
   {
     if (isSignedIn)
       return (
@@ -12,7 +8,7 @@ export function Nav({ isSignedIn, signOut, setRoute, loadProfile }) {
           <a href="#" onClick={loadProfile}>
             Profile
           </a>
-          <a href="#" onClick={handleSignOut}>
+          <a href="#" onClick={signOut}>
             Sign Out
           </a>
         </nav>
