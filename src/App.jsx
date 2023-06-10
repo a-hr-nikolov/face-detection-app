@@ -48,7 +48,7 @@ function App() {
 
     const facesDetected = user.facesDetected + detections;
 
-    const userInfo = { name: user.name, facesDetected };
+    const userInfo = { username: user.username, facesDetected };
 
     const options = {
       method: 'PUT',
@@ -132,8 +132,8 @@ function App() {
     setRoute('signin');
   }
 
-  async function signIn(name, password) {
-    const userInfo = { name, password };
+  async function signIn(username, password) {
+    const userInfo = { username, password };
     const options = {
       method: 'POST',
       headers: {
@@ -146,7 +146,7 @@ function App() {
       if (!response.ok) {
         if (response.status === 400) {
           return document
-            .querySelector('#credentials-error')
+            .querySelector('.js-credentials-error')
             .classList.remove('hidden');
         } else
           return document
@@ -162,8 +162,8 @@ function App() {
     }
   }
 
-  async function register(name, password) {
-    const userInfo = { name, password };
+  async function register(username, password) {
+    const userInfo = { username, password };
     const options = {
       method: 'POST',
       headers: {
@@ -220,11 +220,9 @@ function App() {
         {route === 'signin' && (
           <SignInForm setRoute={setRoute} signIn={signIn} />
         )}
-        {route === 'register' && (
-          <RegistrationForm register={register} username={username} />
-        )}
+        {route === 'register' && <RegistrationForm register={register} />}
         {route === 'profile' && (
-          <Profile detected={user.facesDetected} setRoute={setRoute} />
+          <Profile detected={user.detected} setRoute={setRoute} />
         )}
       </div>
       <Particle className="particles" />

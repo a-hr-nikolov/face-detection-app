@@ -16,14 +16,17 @@ export function SignInForm({ setRoute, signIn }) {
   function handleSignIn(event) {
     event.preventDefault();
 
-    const usernameInput = document.querySelector('#username');
-    const passwordInput = document.querySelector('#password');
+    const emptyFieldError = document.querySelector('.js-empty-fields');
+
+    if (!username) return emptyFieldError.classList.remove('hidden');
+    if (!password) return emptyFieldError.classList.remove('hidden');
+
     if (!username)
       return usernameInput.setCustomValidity('Username field cannot be empty');
     if (!password)
       return passwordInput.setCustomValidity('Password field cannot be empty');
 
-    document.querySelector('#credentials-error').classList.add('hidden');
+    document.querySelector('.js-credentials-error').classList.add('hidden');
     document.querySelector('.server-error-login').classList.add('hidden');
     signIn(username, password);
     setUsername('');
@@ -38,10 +41,7 @@ export function SignInForm({ setRoute, signIn }) {
         onSubmit={handleSignIn}
       >
         <div className="mb-4">
-          <p
-            id="credentials-error"
-            className="text-red-500 text-md italic hidden pb-2"
-          >
+          <p className="js-credentials-error text-red-500 text-md italic hidden pb-2">
             Wrong username and/or password.
           </p>
           <p className="server-error-login text-red-500 text-md italic hidden pb-2">
@@ -69,6 +69,7 @@ export function SignInForm({ setRoute, signIn }) {
           >
             Password
           </label>
+
           <input
             className="shadow appearance-none border invalid:border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             id="password"
@@ -77,13 +78,13 @@ export function SignInForm({ setRoute, signIn }) {
             onChange={handlePasswordChange}
             value={password}
           />
-          <p className="text-red-500 text-xs italic hidden">
-            Please choose a password.
+          <p className="js-empty-fields text-red-500 text-md italic hidden pb-2">
+            All fields are required
           </p>
         </div>
         <div className="flex items-center justify-between">
           <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="bg-blue-500 hover:bg-blue-700 active:scale-105 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="submit"
           >
             Sign In
