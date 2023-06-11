@@ -1,11 +1,15 @@
 import React from 'react';
-import './FaceRecognitionContainer.css';
 
 export function FaceRecognitionContainer({ url, faceBoxData }) {
   const mappedData = faceBoxData.map(item => {
     const style = { ...item };
 
-    return <div className="bounding-box" style={style}></div>;
+    return (
+      <div
+        className="absolute z-10 flex flex-wrap justify-center shadow-[0_0_0_3px_#149df2_inset] cursor-pointer hover:bg-[#149df246] hover:scale-105"
+        style={style}
+      ></div>
+    );
   });
 
   return (

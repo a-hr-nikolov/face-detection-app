@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './RegistrationForm.css';
 
 export function RegistrationForm({ register }) {
   const [username, setUsername] = useState('');
@@ -33,8 +32,7 @@ export function RegistrationForm({ register }) {
   return (
     <div className="w-full max-w-xs mt-8 mx-auto">
       <form
-        id="reg-form"
-        className="shadow-md rounded px-8 pt-6 pb-8"
+        className="bg-[#FFFFFFBB] shadow-md rounded px-8 pt-6 pb-8"
         onSubmit={handleRegistration}
       >
         <div className="mb-4">

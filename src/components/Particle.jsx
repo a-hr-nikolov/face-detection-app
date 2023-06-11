@@ -1,7 +1,6 @@
 import { useCallback } from 'react';
 import Particles from 'react-tsparticles';
 import { loadFull } from 'tsparticles';
-import './Particle.css';
 
 export const Particle = () => {
   const particlesInit = useCallback(async engine => {
@@ -87,7 +86,7 @@ export const Particle = () => {
 
   return (
     <Particles
-      className="particles"
+      className="particles relative -z-10 opacity-50"
       id="tsparticles"
       init={particlesInit}
       loaded={particlesLoaded}

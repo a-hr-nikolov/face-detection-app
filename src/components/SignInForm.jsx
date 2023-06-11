@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './SignInForm.css';
 
 export function SignInForm({ setRoute, signIn }) {
   const [username, setUsername] = useState('');
@@ -37,7 +36,7 @@ export function SignInForm({ setRoute, signIn }) {
     <div className="w-full max-w-xs mt-8 mx-auto">
       <form
         id="sign-in"
-        className="shadow-md rounded px-8 pt-6 pb-8"
+        className="bg-[#FFFFFFBB] shadow-md rounded px-8 pt-6 pb-8"
         onSubmit={handleSignIn}
       >
         <div className="mb-4">

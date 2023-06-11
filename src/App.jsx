@@ -1,14 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Nav } from './components/Nav.jsx';
-import { Logo } from './components/Logo/Logo.jsx';
-import { ImageLinkForm } from './components/ImageLinkForm/ImageLinkForm.jsx';
-import { Particle } from './components/Particle/Particle.jsx';
-import { FaceRecognitionContainer } from './components/FaceRecognitionContainer/FaceRecognitionContainer.jsx';
-import './App.css';
-import { SignInForm } from './components/SignInForm/SignInForm.jsx';
-import { Title } from './components/Title/Title.jsx';
-import { RegistrationForm } from './components/RegistrationForm/RegistrationForm.jsx';
-import { Profile } from './components/Profile/Profile.jsx';
+import { Logo } from './components/Logo.jsx';
+import { ImageLinkForm } from './components/ImageLinkForm.jsx';
+import { Particle } from './components/Particle.jsx';
+import { FaceRecognitionContainer } from './components/FaceRecognitionContainer.jsx';
+import { SignInForm } from './components/SignInForm.jsx';
+import { Title } from './components/Title.jsx';
+import { RegistrationForm } from './components/RegistrationForm.jsx';
+import { Profile } from './components/Profile.jsx';
 
 function App() {
   const [urlInput, setUrlInput] = useState('');
@@ -154,7 +153,7 @@ function App() {
             .classList.remove('hidden');
       }
       const data = await response.json();
-      setUser(data.object);
+      setUser(data);
       setIsSignedIn(true);
       setRoute('home');
     } catch (err) {
@@ -201,7 +200,7 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className="App w-[min(90%,1140px)]">
       <div className="w-full">
         <Nav
           isSignedIn={isSignedIn}
