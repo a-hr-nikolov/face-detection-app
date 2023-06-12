@@ -13,15 +13,17 @@ export function FaceRecognitionContainer({ url, faceBoxData }) {
   });
 
   return (
-    <div id="face-rec-container" className="relative my-8 hidden w-full">
-      <div>
-        {mappedData}
-        <img
-          id="face-rec-img"
-          src={url}
-          alt="Image from URL"
-          className="sm:rounded-3xl rounded-xl"
-        ></img>
+    <div className="my-8 grid justify-center">
+      <div id="face-rec-container" class="hidden">
+        <div className="relative inline-block mx-auto">
+          {mappedData}
+          <img
+            id="face-rec-img"
+            src={url}
+            alt="Image from URL"
+            className="sm:rounded-3xl rounded-xl"
+          />
+        </div>
       </div>
     </div>
   );
