@@ -16,7 +16,7 @@ function App() {
   const [route, setRoute] = useState('signin');
   const [isSignedIn, setIsSignedIn] = useState(false);
   const [user, setUser] = useState(null);
-  const SERVER_URL = 'http://localhost:3000';
+  const SERVER_URL = 'https://face-detection-app-api-nfi5.onrender.com';
 
   function processBoxData(data) {
     const boundingBoxes = data.regions;
