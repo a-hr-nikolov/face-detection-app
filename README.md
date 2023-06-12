@@ -1,5 +1,9 @@
 # Face Recognition App
 
+## 👉[**Try it out here\***](https://a-hr-nikolov.github.io/face-detection-app/)
+
+\***Note:** Render.com server could be offline
+
 The front end of a full-stack application that integrates third party technologies both on the front and the back end.
 
 **Back-end repo:** https://github.com/a-hr-nikolov/face-detection-app-api
