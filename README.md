@@ -1,8 +1,8 @@
-# Face Recognition App
+# Face Detection App
 
 ## 👉[**Try it out here\***](https://a-hr-nikolov.github.io/face-detection-app/)
 
-\***Note:** Render.com server could be offline
+\***NOTE:** Server hosted on **Render.com**, turns off after inactivity. Functionality takes a bit to load after initial server request.
 
 The front end of a full-stack application that integrates third party technologies both on the front and the back end.
 
