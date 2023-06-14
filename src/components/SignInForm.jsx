@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { GuestButton } from './GuestButton';
 
 export function SignInForm({ setRoute, signIn }) {
   const [username, setUsername] = useState('');
@@ -70,7 +71,7 @@ export function SignInForm({ setRoute, signIn }) {
           </label>
 
           <input
-            className="shadow appearance-none border invalid:border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none border invalid:border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-2 leading-tight focus:outline-none focus:shadow-outline"
             id="password"
             type="password"
             placeholder="************"
@@ -88,22 +89,14 @@ export function SignInForm({ setRoute, signIn }) {
           >
             Sign In
           </button>
-          <a
-            className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
+          <button
+            className="inline-block align-baseline font-bold text-red-700 hover:text-blue-800"
             onClick={() => setRoute('register')}
           >
             Not Registered?
-          </a>
+          </button>
         </div>
-        <div className="flex justify-center items-center mt-8">
-          <a
-            className="inline-block font-bold text-md text-red-500 hover:text-red-800"
-            href="#"
-            onClick={() => setRoute('home')}
-          >
-            Use as guest
-          </a>
-        </div>
+        <GuestButton setRoute={setRoute} />
       </form>
     </div>
   );

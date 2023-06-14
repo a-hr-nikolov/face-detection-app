@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { GuestButton } from './GuestButton';
 
-export function RegistrationForm({ register }) {
+export function RegistrationForm({ register, setRoute }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -67,7 +68,7 @@ export function RegistrationForm({ register }) {
             Password
           </label>
           <input
-            className="shadow appearance-none border invalid:border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none border invalid:border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-2 leading-tight focus:outline-none focus:shadow-outline"
             id="password"
             type="password"
             placeholder="************"
@@ -78,7 +79,7 @@ export function RegistrationForm({ register }) {
             All fields are required
           </p>
         </div>
-        <div className="flex items-center justify-center pb-2">
+        <div className="flex items-center justify-center">
           <button
             className="w-full bg-blue-500 hover:bg-blue-700 active:scale-105 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="submit"
@@ -86,6 +87,7 @@ export function RegistrationForm({ register }) {
             Register
           </button>
         </div>
+        <GuestButton setRoute={setRoute} />
       </form>
     </div>
   );
