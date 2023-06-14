@@ -5,12 +5,18 @@ export function Nav({ isSignedIn, signOut, setRoute, loadProfile }) {
     if (isSignedIn)
       return (
         <nav className="flex gap-8 justify-end py-4">
-          <a href="#" onClick={loadProfile}>
+          <button
+            onClick={loadProfile}
+            className="inline-block self-center text-white box-border hover:scale-105 font-bold p-2 active:scale-110"
+          >
             Profile
-          </a>
-          <a href="#" onClick={signOut}>
+          </button>
+          <button
+            onClick={signOut}
+            className="inline-block self-center text-white box-border hover:scale-105 font-bold p-2 active:scale-110"
+          >
             Sign Out
-          </a>
+          </button>
         </nav>
       );
     else
