@@ -23,7 +23,7 @@ export function ImageLinkForm({ onChange, onSubmit, urlValue }) {
           />
           <button
             type="submit"
-            className="search-btn box-border bg-sky-600 text-white px-12 py-2 sm:rounded-full rounded-xl hover:scale-105 active:scale-110"
+            className="search-btn box-border font-bold bg-blue-500 hover:bg-blue-700 text-white px-12 py-2 sm:rounded-full rounded-xl active:scale-105"
           >
             Detect
           </button>

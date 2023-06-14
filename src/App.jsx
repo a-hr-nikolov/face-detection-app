@@ -185,7 +185,9 @@ function App() {
         {route === 'signin' && (
           <SignInForm setRoute={setRoute} signIn={signIn} />
         )}
-        {route === 'register' && <RegistrationForm register={register} />}
+        {route === 'register' && (
+          <RegistrationForm register={register} setRoute={setRoute} />
+        )}
         {route === 'profile' && (
           <Profile detected={user.detected} setRoute={setRoute} />
         )}

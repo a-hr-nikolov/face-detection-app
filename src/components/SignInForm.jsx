@@ -90,7 +90,7 @@ export function SignInForm({ setRoute, signIn }) {
             Sign In
           </button>
           <button
-            className="inline-block align-baseline font-bold text-red-700 hover:text-blue-800"
+            className="inline-block align-baseline font-bold text-red-700 hover:scale-105"
             onClick={() => setRoute('register')}
           >
             Not Registered?

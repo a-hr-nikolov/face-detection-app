@@ -16,12 +16,18 @@ export function Nav({ isSignedIn, signOut, setRoute, loadProfile }) {
     else
       return (
         <nav className="flex gap-8 justify-end py-4">
-          <a href="#" onClick={() => setRoute('signin')}>
+          <button
+            className="inline-block self-center text-white box-border hover:scale-105 font-bold p-2 active:scale-110"
+            onClick={() => setRoute('signin')}
+          >
             Sign In
-          </a>
-          <a href="#" onClick={() => setRoute('register')}>
+          </button>
+          <button
+            className="inline-block self-center text-white box-border hover:scale-105 font-bold p-2 active:scale-110"
+            onClick={() => setRoute('register')}
+          >
             Register
-          </a>
+          </button>
         </nav>
       );
   }
