@@ -2,7 +2,7 @@
 
 ## 👉[**Try it out here\***](https://a-hr-nikolov.github.io/face-detection-app/)
 
-\***NOTE:** Server hosted on **Render.com**, turns off after inactivity. Functionality takes a bit to load after initial server request.
+\***NOTE:** Server hosted on **Render.com** and kept up by a **cron-job.org** service. If the latter is down, the server will take a minute or two to restart after the initial request to it is made.
 
 The front end of a full-stack application that integrates third party technologies both on the front and the back end.
 
