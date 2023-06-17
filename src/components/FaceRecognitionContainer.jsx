@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function FaceRecognitionContainer({ url, faceBoxData }) {
+export default function FaceRecognitionContainer({ url, faceBoxData }) {
   const mappedData = faceBoxData.map(item => {
     const style = { ...item };
 

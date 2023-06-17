@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function Nav({ isSignedIn, signOut, setRoute, loadProfile }) {
+export default function Nav({ isSignedIn, signOut, setRoute, loadProfile }) {
   {
     if (isSignedIn)
       return (

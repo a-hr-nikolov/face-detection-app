@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function Profile({ detected, setRoute }) {
+export default function Profile({ detected, setRoute }) {
   return (
     <div className="grid justify-items-center gap-4 mt-12">
       <h3 className="text-2xl text-white">

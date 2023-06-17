@@ -1,8 +1,8 @@
 import { useCallback } from 'react';
-import Particles from 'react-tsparticles';
 import { loadFull } from 'tsparticles';
+import Particles from 'react-tsparticles';
 
-export const Particle = () => {
+export default function Particle() {
   const particlesInit = useCallback(async engine => {
     await loadFull(engine);
   }, []);
@@ -93,4 +93,4 @@ export const Particle = () => {
       options={optionsVar}
     />
   );
-};
+}

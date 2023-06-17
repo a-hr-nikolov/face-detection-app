@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function Logo() {
+export default function Logo() {
   return (
     <img
       src="logo.png"

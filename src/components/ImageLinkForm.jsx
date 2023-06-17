@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function ImageLinkForm({ onChange, onSubmit, urlValue }) {
+export default function ImageLinkForm({ onChange, onSubmit, urlValue }) {
   const handleChange = ({ target }) => {
     onChange(target.value);
   };

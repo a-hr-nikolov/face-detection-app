@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { GuestButton } from './GuestButton';
+import GuestButton from './GuestButton';
 
-export function SignInForm({ setRoute, signIn }) {
+export default function SignInForm({ setRoute, signIn }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 

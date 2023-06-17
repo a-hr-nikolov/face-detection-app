@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { GuestButton } from './GuestButton';
+import GuestButton from './GuestButton';
 
-export function RegistrationForm({ register, setRoute }) {
+export default function RegistrationForm({ register, setRoute }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 

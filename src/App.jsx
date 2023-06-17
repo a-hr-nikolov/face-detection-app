@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import { Nav } from './components/Nav.jsx';
-import { Logo } from './components/Logo.jsx';
-import { ImageLinkForm } from './components/ImageLinkForm.jsx';
-import { Particle } from './components/Particle.jsx';
-import { FaceRecognitionContainer } from './components/FaceRecognitionContainer.jsx';
-import { SignInForm } from './components/SignInForm.jsx';
-import { Title } from './components/Title.jsx';
-import { RegistrationForm } from './components/RegistrationForm.jsx';
-import { Profile } from './components/Profile.jsx';
+import Nav from './components/Nav.jsx';
+import Logo from './components/Logo.jsx';
+import ImageLinkForm from './components/ImageLinkForm.jsx';
+import Particle from './components/Particle.jsx';
+import FaceRecognitionContainer from './components/FaceRecognitionContainer.jsx';
+import SignInForm from './components/SignInForm.jsx';
+import Title from './components/Title.jsx';
+import RegistrationForm from './components/RegistrationForm.jsx';
+import Profile from './components/Profile.jsx';
 
 function App() {
   const [urlInput, setUrlInput] = useState('');
