@@ -72,6 +72,7 @@ function App() {
   }
 
   async function onSubmit() {
+    if (urlInput === '') return;
     document.querySelector('#face-rec-container').classList.remove('hidden');
     setUrlOutput(urlInput);
     try {
