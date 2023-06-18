@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import GuestButton from './GuestButton';
 import ErrorMessage from './ErrorMessage';
+import CredentialFields from './CredentialFields';
 
 export default function SignInForm({ setRoute, signIn }) {
   const [username, setUsername] = useState('');
@@ -41,40 +42,15 @@ export default function SignInForm({ setRoute, signIn }) {
         className="bg-[#FFFFFFBB] shadow-md rounded px-8 pt-6 pb-8"
         onSubmit={handleSignIn}
       >
-        <div className="mb-4">
-          <ErrorMessage />
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="username"
-          >
-            Username
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="username"
-            type="text"
-            placeholder="Username"
-            onChange={handleUsernameChange}
-            value={username}
-          />
-        </div>
-        <div className="mb-6">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="password"
-          >
-            Password
-          </label>
-
-          <input
-            className="shadow appearance-none border invalid:border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-2 leading-tight focus:outline-none focus:shadow-outline"
-            id="password"
-            type="password"
-            placeholder="************"
-            onChange={handlePasswordChange}
-            value={password}
-          />
-        </div>
+        <ErrorMessage />
+        <CredentialFields
+          {...{
+            username,
+            password,
+            handleUsernameChange,
+            handlePasswordChange,
+          }}
+        />
         <div className="flex items-center justify-between">
           <button
             className="bg-blue-500 hover:bg-blue-700 active:scale-105 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
