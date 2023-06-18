@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import GuestButton from './GuestButton';
+import ErrorMessage from './ErrorMessage';
 
 export default function SignInForm({ setRoute, signIn }) {
   const [username, setUsername] = useState('');
@@ -27,7 +28,7 @@ export default function SignInForm({ setRoute, signIn }) {
       return passwordInput.setCustomValidity('Password field cannot be empty');
 
     document.querySelector('.js-credentials-error').classList.add('hidden');
-    document.querySelector('.server-error-login').classList.add('hidden');
+    document.querySelector('.js-server-error').classList.add('hidden');
     signIn(username, password);
     setUsername('');
     setPassword('');
@@ -41,12 +42,7 @@ export default function SignInForm({ setRoute, signIn }) {
         onSubmit={handleSignIn}
       >
         <div className="mb-4">
-          <p className="js-credentials-error text-red-500 text-md italic hidden pb-2">
-            Wrong username and/or password.
-          </p>
-          <p className="server-error-login text-red-500 text-md italic hidden pb-2">
-            An error occurred, please try again.
-          </p>
+          <ErrorMessage />
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
             htmlFor="username"
@@ -78,9 +74,6 @@ export default function SignInForm({ setRoute, signIn }) {
             onChange={handlePasswordChange}
             value={password}
           />
-          <p className="js-empty-fields text-red-500 text-md italic hidden pb-2">
-            All fields are required
-          </p>
         </div>
         <div className="flex items-center justify-between">
           <button

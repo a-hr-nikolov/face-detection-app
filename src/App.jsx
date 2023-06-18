@@ -3,7 +3,7 @@ import Nav from './components/Nav.jsx';
 import Logo from './components/Logo.jsx';
 import ImageLinkForm from './components/ImageLinkForm.jsx';
 import Particle from './components/Particle.jsx';
-import FaceRecognitionContainer from './components/FaceRecognitionContainer.jsx';
+import FaceDetectionContainer from './components/FaceDetectionContainer.jsx';
 import SignInForm from './components/SignInForm.jsx';
 import Title from './components/Title.jsx';
 import RegistrationForm from './components/RegistrationForm.jsx';
@@ -108,7 +108,7 @@ function App() {
             .classList.remove('hidden');
         } else
           return document
-            .querySelector('.server-error-login')
+            .querySelector('.js-server-error')
             .classList.remove('hidden');
       }
       const data = await response.json();
@@ -176,10 +176,7 @@ function App() {
               onSubmit={onSubmit}
               urlValue={urlInput}
             />
-            <FaceRecognitionContainer
-              url={urlOutput}
-              faceBoxData={faceBoxData}
-            />
+            <FaceDetectionContainer url={urlOutput} faceBoxData={faceBoxData} />
           </>
         )}
         {route === 'signin' && (

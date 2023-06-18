@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import GuestButton from './GuestButton';
+import ErrorMessage from './ErrorMessage';
 
 export default function RegistrationForm({ register, setRoute }) {
   const [username, setUsername] = useState('');
@@ -37,12 +38,7 @@ export default function RegistrationForm({ register, setRoute }) {
         onSubmit={handleRegistration}
       >
         <div className="mb-4">
-          <p className="js-username-error text-red-500 text-md italic hidden pb-2">
-            Bad username request, try again.
-          </p>
-          <p className="js-server-error text-red-500 text-md italic hidden pb-2">
-            An error occurred, please try again.
-          </p>
+          <ErrorMessage />
 
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
@@ -75,9 +71,6 @@ export default function RegistrationForm({ register, setRoute }) {
             onChange={handlePasswordChange}
             value={password}
           />
-          <p className="js-empty-fields text-red-500 text-md italic hidden pb-2">
-            All fields are required
-          </p>
         </div>
         <div className="flex items-center justify-center">
           <button
