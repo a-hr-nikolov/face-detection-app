@@ -23,11 +23,6 @@ export default function SignInForm({ setRoute, signIn }) {
     if (!username) return emptyFieldError.classList.remove('hidden');
     if (!password) return emptyFieldError.classList.remove('hidden');
 
-    if (!username)
-      return usernameInput.setCustomValidity('Username field cannot be empty');
-    if (!password)
-      return passwordInput.setCustomValidity('Password field cannot be empty');
-
     document.querySelector('.js-credentials-error').classList.add('hidden');
     document.querySelector('.js-server-error').classList.add('hidden');
     signIn(username, password);
@@ -51,21 +46,21 @@ export default function SignInForm({ setRoute, signIn }) {
             handlePasswordChange,
           }}
         />
-        <div className="flex items-center justify-between">
+        <div className="grid gap-4">
           <button
-            className="bg-blue-500 hover:bg-blue-700 active:scale-105 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="bg-blue-500 hover:bg-blue-700 shadow-md active:scale-105 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="submit"
           >
             Sign In
           </button>
           <button
-            className="inline-block align-baseline font-bold text-red-700 hover:scale-105"
+            className="align-baseline font-bold text-red-700 hover:scale-105"
             onClick={() => setRoute('register')}
           >
             Not Registered?
           </button>
+          <GuestButton setRoute={setRoute} />
         </div>
-        <GuestButton setRoute={setRoute} />
       </form>
     </div>
   );

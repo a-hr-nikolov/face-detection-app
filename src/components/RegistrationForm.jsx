@@ -47,15 +47,15 @@ export default function RegistrationForm({ register, setRoute }) {
             handlePasswordChange,
           }}
         />
-        <div className="flex items-center justify-center">
+        <div className="grid place-content-stretch gap-4">
           <button
-            className="w-full bg-blue-500 hover:bg-blue-700 active:scale-105 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="bg-blue-500 hover:bg-blue-700 shadow-md active:scale-105 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="submit"
           >
             Register
           </button>
+          <GuestButton setRoute={setRoute} />
         </div>
-        <GuestButton setRoute={setRoute} />
       </form>
     </div>
   );
