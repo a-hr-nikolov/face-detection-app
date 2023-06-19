@@ -42,7 +42,7 @@ export default function ImageLinkForm({ onChange, onSubmit, urlValue }) {
             <input
               type="text"
               id="url-input"
-              className="block w-full p-4 pl-10 text-md text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="block w-full p-4 pl-10 text-md text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 shadow-md"
               placeholder="Enter image URL"
               required=""
               value={urlValue}
@@ -51,13 +51,13 @@ export default function ImageLinkForm({ onChange, onSubmit, urlValue }) {
           </div>
           <button
             type="submit"
-            className="text-white bg-blue-500 hover:bg-blue-700 focus:ring-2 focus:outline-none focus:ring-blue-300 font-bold rounded-lg text-md  py-4 border-gray-300 sm:w-[25%] active:scale-105"
+            className="text-white bg-blue-500 hover:bg-blue-700 focus:ring-2 focus:outline-none focus:ring-blue-300 font-bold rounded-lg text-md  py-4 border-gray-300 sm:w-[25%] active:scale-105 shadow-md"
           >
             Detect
           </button>
           <button
             type="button"
-            className="text-white bg-green-600 hover:bg-green-800 focus:ring-2 focus:outline-none focus:ring-blue-300 font-bold rounded-lg text-md  py-4 border-gray-300 sm:w-[25%] active:scale-105"
+            className="text-white bg-green-600 hover:bg-green-800 focus:ring-2 focus:outline-none focus:ring-blue-300 font-bold rounded-lg text-md  py-4 border-gray-300 sm:w-[25%] active:scale-105 shadow-md"
             onClick={handleExampleClick}
           >
             See Example

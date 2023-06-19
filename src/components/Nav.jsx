@@ -7,13 +7,13 @@ export default function Nav({ isSignedIn, signOut, setRoute, loadProfile }) {
         <nav className="flex gap-8 justify-end py-4">
           <button
             onClick={loadProfile}
-            className="inline-block self-center text-white box-border hover:scale-105 font-bold p-2 active:scale-110"
+            className="inline-block self-center text-white drop-shadow-md box-border hover:scale-105 font-bold p-2 active:scale-110"
           >
             Profile
           </button>
           <button
             onClick={signOut}
-            className="inline-block self-center text-white box-border hover:scale-105 font-bold p-2 active:scale-110"
+            className="inline-block self-center text-white drop-shadow-md box-border hover:scale-105 font-bold p-2 active:scale-110"
           >
             Sign Out
           </button>
@@ -23,13 +23,13 @@ export default function Nav({ isSignedIn, signOut, setRoute, loadProfile }) {
       return (
         <nav className="flex gap-8 justify-end py-4">
           <button
-            className="inline-block self-center text-white box-border hover:scale-105 font-bold p-2 active:scale-110"
+            className="inline-block self-center text-white box-border hover:scale-105 drop-shadow-md font-bold p-2 active:scale-110"
             onClick={() => setRoute('signin')}
           >
             Sign In
           </button>
           <button
-            className="inline-block self-center text-white box-border hover:scale-105 font-bold p-2 active:scale-110"
+            className="inline-block self-center text-white box-border drop-shadow-md hover:scale-105 font-bold p-2 active:scale-110"
             onClick={() => setRoute('register')}
           >
             Register

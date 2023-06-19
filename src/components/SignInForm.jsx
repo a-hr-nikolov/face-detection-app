@@ -53,13 +53,14 @@ export default function SignInForm({ setRoute, signIn }) {
           >
             Sign In
           </button>
+
+          <GuestButton setRoute={setRoute} />
           <button
-            className="align-baseline font-bold text-red-700 hover:scale-105"
+            className="align-baseline font-bold text-blue-600 underline hover:scale-105"
             onClick={() => setRoute('register')}
           >
-            Not Registered?
+            or register here
           </button>
-          <GuestButton setRoute={setRoute} />
         </div>
       </form>
     </div>
