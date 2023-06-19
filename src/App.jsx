@@ -168,7 +168,7 @@ function App() {
           setRoute={setRoute}
           loadProfile={loadProfile}
         />
-        <Logo />
+        <Logo setRoute={setRoute} />
         <Title />
         {route === 'home' && (
           <>
