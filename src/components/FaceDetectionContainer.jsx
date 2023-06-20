@@ -13,7 +13,7 @@ export default function FaceDetectionContainer({ url, faceBoxData }) {
   });
 
   return (
-    <div className="my-8 grid justify-center">
+    <div className="mb-8 grid justify-center">
       <div id="face-rec-container" className="hidden">
         <div className="relative inline-block mx-auto">
           {mappedData}

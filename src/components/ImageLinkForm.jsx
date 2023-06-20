@@ -19,7 +19,7 @@ export default function ImageLinkForm({ onChange, onSubmit, urlValue }) {
 
   return (
     <div className="form-container flex flex-col gap-4 items-center justify-center pt-4">
-      <div className="flex flex-col sm:flex-row justify-center gap-4 self-stretch p-6 sm:p-12 ">
+      <div className="flex flex-col sm:flex-row justify-center gap-4 self-stretch p-4 sm:p-8 ">
         <form onSubmit={handleSubmit} className="js-detect-form contents">
           <div className="relative w-full">
             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
