@@ -53,7 +53,6 @@ export default function SignInForm({ setRoute, signIn }) {
           >
             Sign In
           </button>
-
           <GuestButton setRoute={setRoute} />
           <button
             className="align-baseline font-bold text-blue-600 underline hover:scale-105"

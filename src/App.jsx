@@ -9,7 +9,7 @@ import Title from './components/Title.jsx';
 import RegistrationForm from './components/RegistrationForm.jsx';
 import Profile from './components/Profile.jsx';
 
-function App() {
+export default function App() {
   const [urlInput, setUrlInput] = useState('');
   const [urlOutput, setUrlOutput] = useState('');
   const [faceBoxData, setFaceBoxData] = useState([]);
@@ -67,11 +67,11 @@ function App() {
     }
   }
 
-  function onUrlInputChange(value) {
+  function handleUrlInputChange(value) {
     setUrlInput(() => value);
   }
 
-  async function onSubmit() {
+  async function handleSubmit() {
     if (urlInput === '') return;
     document.querySelector('#face-rec-container').classList.remove('hidden');
     setUrlOutput(urlInput);
@@ -173,8 +173,8 @@ function App() {
         {route === 'home' && (
           <>
             <ImageLinkForm
-              onChange={onUrlInputChange}
-              onSubmit={onSubmit}
+              onChange={handleUrlInputChange}
+              onSubmit={handleSubmit}
               urlValue={urlInput}
             />
             <FaceDetectionContainer url={urlOutput} faceBoxData={faceBoxData} />
@@ -194,5 +194,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
