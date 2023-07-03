@@ -68,15 +68,15 @@ export default function App() {
   }
 
   function handleUrlInputChange(value) {
-    setUrlInput(() => value);
+    setUrlInput(value);
   }
 
-  async function handleSubmit() {
-    if (urlInput === '') return;
+  async function handleSubmit(url = urlInput) {
+    if (url === '') return;
     document.querySelector('#face-rec-container').classList.remove('hidden');
-    setUrlOutput(urlInput);
+    setUrlOutput(url);
     try {
-      const result = await fetch(SERVER_URL + '/detect?url=' + urlInput);
+      const result = await fetch(SERVER_URL + '/detect?url=' + url);
       const data = await result.json();
       setFaceBoxData(processBoxData(data));
       setUrlInput('');

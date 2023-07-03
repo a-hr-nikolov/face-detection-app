@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 
 export default function ImageLinkForm({ onChange, onSubmit, urlValue }) {
   const handleChange = ({ target }) => {
@@ -11,10 +11,9 @@ export default function ImageLinkForm({ onChange, onSubmit, urlValue }) {
   };
 
   const handleExampleClick = () => {
-    onChange(
-      'https://images.newscientist.com/wp-content/uploads/2022/02/14174128/PRI_223554170.jpg'
-    );
-    onSubmit();
+    const url =
+      'https://www.nme.com/wp-content/uploads/2023/03/Keanu-Reeves-as-John-Wick-696x444.jpeg';
+    onSubmit(url);
   };
 
   return (
@@ -51,6 +50,7 @@ export default function ImageLinkForm({ onChange, onSubmit, urlValue }) {
           </div>
           <button
             type="submit"
+            id="submit-button"
             className="text-white bg-blue-500 hover:bg-blue-700 focus:ring-2 focus:outline-none focus:ring-blue-300 font-bold rounded-lg text-md  py-4 border-2 border-white sm:w-[25%] active:scale-105 shadow-md"
           >
             Detect
