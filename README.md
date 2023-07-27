@@ -4,6 +4,8 @@
 
 \***NOTE:** Clarifai gets regular updates and many of its services can be offline. This seems to happen quite regularly for the face detection model I'm using. If detection boxes don't load over faces, a fetching error is logged to the console.
 
+Also, since I'm using Render for the server hosting and Railway for the database with their free tiers, it is possible that both are actually down. In fact, Railway are turning off their free tier, so if you are reading this, I am still to find a good replacement to host my PostgreSQL.
+
 [For back-end repo click here](https://github.com/a-hr-nikolov/face-detection-app-api)
 
 ---
